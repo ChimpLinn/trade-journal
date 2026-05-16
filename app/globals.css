@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+:root {
+  --background: #eef3ff;
+  --surface: #ffffff;
+  --foreground: #000000;
+  --primary: #3b5bdb;
+  --success: #089981;
+  --danger: #e91e63;
+  --secondary-label: #8e8e93;
+  --separator: rgba(60, 60, 67, 0.1);
+
+  /* 录入按钮 + − 1 2 字号，改这里即可（单位 px） */
+  --trade-pad-font-size: 35px;
+
+  /* iOS 系统字体栈：iPhone 上为 SF Pro + 苹方 */
+  --font-ios:
+    -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB",
+    system-ui, sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --font-sans: var(--font-ios);
+}
+
+html {
+  color-scheme: light;
+  font-family: var(--font-ios);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-ios);
+  font-size: 17px;
+  line-height: 1.29412;
+  letter-spacing: -0.022em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* iOS 17+ / Safari：使用系统动态正文字体 */
+@supports (font: -apple-system-body) {
+  body {
+    font: -apple-system-body;
+    font-family: var(--font-ios);
+  }
+}
+
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  /* 不要写 font-size: inherit，否则会盖掉 Tailwind 的 text-* 类 */
+}
+
+.ios-select {
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: none;
+}
+
+/* 录入按钮字号：绕过 Tailwind 动态类 + preflight font:inherit */
+.trade-pad-btn {
+  font-size: var(--trade-pad-font-size) !important;
+  line-height: 1 !important;
+  letter-spacing: 0 !important;
+}
+
+.trade-pad-cell {
+  min-height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* iOS 常用字号（与 HIG 接近） */
+.ios-large-title {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 0.011em;
+  line-height: 1.2;
+}
+
+.ios-title2 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.016em;
+  line-height: 1.27;
+}
+
+.ios-headline {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.022em;
+  line-height: 1.29;
+}
+
+.ios-body {
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+  line-height: 1.29;
+}
+
+.ios-subhead {
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: -0.016em;
+  line-height: 1.33;
+}
+
+.ios-footnote {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.006em;
+  line-height: 1.38;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 12px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.animate-toast-in {
+  animation: toast-in 0.25s ease-out;
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-modal-in {
+  animation: modal-in 0.22s ease-out;
+}
